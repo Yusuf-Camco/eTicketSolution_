@@ -9,7 +9,6 @@ namespace eTicketsApp.Models
     {
         [Key]
         public int Id { get; set; }
-
         public string Name { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
@@ -31,10 +30,10 @@ namespace eTicketsApp.Models
         [ForeignKey("ProducerId")]
         public Producer Producer { get; set; }
 
-        public Movie()
-        {
-            Cinema = new();
-            Producer = new();
-        }
+        //public Movie()
+        //{
+        //    Cinema = new();
+        //    Producer = new();
+        //}
     }
 }

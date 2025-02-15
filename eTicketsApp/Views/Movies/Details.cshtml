@@ -33,7 +33,7 @@
                             <b>Cinema: </b>
                             @if (Model.Cinema != null)
                             {
-                                <a asp-controller="Cinemas" asp-action="Details" asp-route-id="@Model.CinemaId">
+                                <a asp-controller="Cinemas" asp-action="Details" asp-route-id="@Model.CinemaId" style="text-decoration:none">
                                     @Model.Cinema.Name
                                 </a>
                             }
@@ -46,7 +46,7 @@
                             <b>Producer: </b>
                             @if (Model.Producer != null)
                             {
-                                <a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducerId">
+                                <a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducerId" style="text-decoration:none">
                                     @Model.Producer.FullName
                                 </a>
                             }
@@ -84,7 +84,7 @@
                                         <div class="col text-center">
                                             <img class="border-info rounded-circle" src="@actor.Actor?.ProfilePictureURL" style="max-width: 150px" alt="@actor.Actor?.FullName" />
                                             <br />
-                                            <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">@actor.Actor.FullName</a>
+                                            <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId" style="text-decoration:none">@actor.Actor.FullName</a>
                                         </div>
                                     }
                                 }
@@ -115,12 +115,3 @@
         </div>
     </div> 
 </div>
-
-@* @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-{
-    <div style="position: fixed; right: 25px; bottom: 25px" class="text-white">
-        <a asp-controller="Movies" asp-action="Create" class="btn btn-success">
-            <i class="bi bi-plus-circle"></i> Add New
-        </a>
-    </div>
-}*@

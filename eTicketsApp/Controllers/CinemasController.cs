@@ -26,7 +26,7 @@ namespace eTicketsApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("FullName", "ProfilePictureURL", "Bio")] Cinema cinema)
+        public async Task<IActionResult> Create([Bind("Name", "Logo", "Description")] Cinema cinema)
         {
             if (!ModelState.IsValid) return View(cinema);
             await _services.AddAsync(cinema);
