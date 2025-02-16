@@ -14,6 +14,17 @@ namespace eTicketsApp.Data.Services.Implementations
             _context = context;
         }
 
+        public async Task<Movie> GetMovieByIdAsync(int id)
+        {
+            var movie = await _context.Movies
+                                .Include(c => c.Cinema)
+                                .Include(p => p.Producer)
+                                .Include(am => am.Actors_Movies).ThenInclude(a => a.Actor)
+                                .FirstOrDefaultAsync(a => a.Id == id);
+
+            return movie;
+        }
+
         public async Task AddNewMovieAsync(NewMovieVM newMovie)
         {
             var newMovieData = new Movie()
@@ -43,17 +54,7 @@ namespace eTicketsApp.Data.Services.Implementations
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Movie> GetMovieByIdAsync(int id)
-        {
-            var movie = await _context.Movies
-                                .Include(c => c.Cinema)
-                                .Include(p => p.Producer)
-                                .Include(am => am.Actors_Movies).ThenInclude(a => a.Actor)
-                                .FirstOrDefaultAsync(a => a.Id == id);
-
-            return movie;
-        }
-
+       
         public async Task<NewMovieDropdownsVM> GetNewMovieDropdownValues()
         {
             var response = new NewMovieDropdownsVM()
@@ -96,7 +97,7 @@ namespace eTicketsApp.Data.Services.Implementations
                     MovieId = newMovie.Id,
                     ActorId = actorId
                 };
-                _context.AddRange(newActorMovie);
+                await _context.AddAsync(newActorMovie);
             }
             await _context.SaveChangesAsync();
         }

@@ -21,8 +21,8 @@ namespace eTicketsApp.Data.Base
 
         public async Task DeleteAsync(int id)
         {
-            var result = await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);            
-            _context.Remove(result);
+            var response = await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);            
+            _context.Remove(response);
             await _context.SaveChangesAsync();
         }
 

@@ -18,6 +18,19 @@ namespace eTicketsApp.Controllers
             _services = services;
         }
         public async Task<IActionResult> Index() => View(await _services.GetAllAsync(n => n.Cinema));
+
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            var allMovies = await _services.GetAllAsync(n => n.Cinema);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var filtered = allMovies.Where(n => n.Name.Contains(searchString) || n.Description.Contains(searchString)).ToList();
+                return View("Index", filtered);
+            }
+
+            return View("Index", allMovies);
+        }
+
         //Get: Producers/Create
         public async Task<IActionResult> Create()
         {
@@ -46,7 +59,7 @@ namespace eTicketsApp.Controllers
         public async Task<IActionResult> Details(int id) => View(await _services.GetMovieByIdAsync(id));
 
 
-        //Get: Actors/Edit/{id}
+        //Get: Movies/Edit/{id}
         public async Task<IActionResult> Edit(int id)
         {
             var movieData = await _services.GetMovieByIdAsync(id);
@@ -67,9 +80,14 @@ namespace eTicketsApp.Controllers
                 MovieCategory = movieData.MovieCategory,
                 Price = movieData.Price,
                 ActorIds = movieData.Actors_Movies.Select(a => a.ActorId).ToList()
-                
+
             };
-            return View();
+            var dropdownData = await _services.GetNewMovieDropdownValues();
+            ViewBag.Cinemas = new SelectList(dropdownData.Cinemas, "Id", "Name");
+            ViewBag.Actors = new SelectList(dropdownData.Actors, "Id", "FullName");
+            ViewBag.Producers = new SelectList(dropdownData.Producers, "Id", "FullName");
+
+            return View(result);
         }
 
         [HttpPost]
@@ -79,6 +97,7 @@ namespace eTicketsApp.Controllers
             {
                 return View("Not Found");
             }
+
             if (!ModelState.IsValid)
             {
                 var dropdownData = await _services.GetNewMovieDropdownValues();

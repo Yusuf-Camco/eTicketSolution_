@@ -29,5 +29,9 @@ namespace eTicketsApp.Data
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Actor_Movie> Actors_Movies { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
+
+        //Orders related
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
     }
 }
