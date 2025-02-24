@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eTicketsApp.Migrations
 {
     /// <inheritdoc />
-    public partial class _initial : Migration
+    public partial class _init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

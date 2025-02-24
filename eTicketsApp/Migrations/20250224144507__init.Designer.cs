@@ -12,8 +12,8 @@ using eTicketsApp.Data;
 namespace eTicketsApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250216001711__initial")]
-    partial class _initial
+    [Migration("20250224144507__init")]
+    partial class _init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
