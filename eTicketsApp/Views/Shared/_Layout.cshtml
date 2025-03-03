@@ -111,8 +111,11 @@
                             <a class="nav-link text-dark" asp-controller="Movies" asp-action="Index"><i class="badge-info bi-film"></i> Movies</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @* <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bi bi-gear"></i> Management
+                            </a> *@
+                            <a class="nav-link dropdown-toggle text-black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-gear"></i>Management
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" asp-controller="Cinemas" asp-action="Index"><i class="bi bi-camera-reels"></i> Cinema</a>
@@ -138,12 +141,14 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; <span id="currentYear"></span> - eTicketsApp
-        </div>
-    </footer>
-
+    
+    <div class="no-print w-100 col-12 text-center m-0" style="height:30px; padding:0; z-index: 9999; color: white; bottom: 0;font-weight:bold; position: fixed;background-color:rgb(50, 50, 50);">
+        <label class="m-0" style="font-size:12px; text-align:center;font-family:Arial;color:white;">
+            <div class="container">
+                &copy; <span id="currentYear"></span>&nbsp;&nbsp;&nbsp; - eTicketsApp &nbsp;&nbsp;&nbsp;ALL RIGHTS RESERVED
+            </div>
+        </label>
+    </div>
     <!-- jQuery (must be before Bootstrap JS) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
